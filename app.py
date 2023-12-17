@@ -3,7 +3,7 @@ from transformers import pipeline
 import requests
 import gdown
 from pytube import YouTube
-import os
+import os, time
 
 def download_file_from_url(url, output_folder="."):
     response = requests.get(url)
@@ -50,9 +50,15 @@ def transcribe_audio(input_data, method):
     
     st.text("Listen to the uploaded audio before transcribing:")
     if st.button("Transcribe"):
+        # Record the start time
+        start_time = time.time()
         st.text("Transcribing... This may take a moment.")
-        transcription = whisper(file_path, chunk_length_s=10)['text']
-        st.success("Transcription Complete:")
+        transcription = whisper(file_path,  max_new_tokens=300, chunk_length_s=30)['text']
+        # Record the end time
+        end_time = time.time()
+        # Calculate and print the elapsed time in seconds
+        elapsed_time = end_time - start_time
+        st.success(f"Transcription complete 🎊, the computation took: {elapsed_time:.4f} seconds")
         st.write(transcription)
 
 def home_page():
