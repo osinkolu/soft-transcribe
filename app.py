@@ -36,17 +36,17 @@ def transcribe_audio(input_data, method):
     elif method == "Google Drive":
         file_extension = st.selectbox("Select File Extension", ["mp3", "wav", "ogg", "flac", "aac", "m4a"])
         file_path = download_file_from_google_drive(input_data, file_extension)
+        st.audio(file_path, format="audio/" + file_extension, start_time=0)
+
     elif method == "YouTube":
         file_path = download_audio_from_youtube(input_data)
+        st.audio(file_path, format="audio/" + file_path.split(".")[-1], start_time=0)
     elif method == "File Upload":
         file_path = input_data.name
     else:
         raise ValueError("Invalid transcription method")
     
     st.text("Listen to the uploaded audio before transcribing:")
-    cur_file_extension = file_path.split(".")[-1]
-    st.audio(file_path, format="audio/" + cur_file_extension, start_time=0)
-
     if st.button("Transcribe"):
         st.text("Transcribing... This may take a moment.")
         transcription = whisper(file_path)['text']
