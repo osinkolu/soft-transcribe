@@ -59,7 +59,7 @@ def home_page():
     transcription_mode = st.selectbox("Select Transcription Method", ["File Upload", "URL", "Google Drive", "YouTube"])
     
     if transcription_mode == "File Upload" and uploaded_file:
-        transcribe_audio(uploaded_file, method="File Upload")
+        transcribe_audio(uploaded_file.name, method="File Upload")
     elif transcription_mode in ["URL", "Google Drive", "YouTube"]:
         link_label = "Enter the link"
         if transcription_mode == "Google Drive":
