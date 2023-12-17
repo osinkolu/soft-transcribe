@@ -43,7 +43,7 @@ def transcribe_audio(input_data, method):
         st.audio(file_path, format="audio/" + file_path.split(".")[-1], start_time=0)
     elif method == "File Upload":
         file_path = input_data
-        st.audio(file_path, format="audio/" + file_path.split(".")[-1], start_time=0)
+        st.audio(file_path, start_time=0)
     else:
         raise ValueError("Invalid transcription method")
     
