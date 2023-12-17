@@ -56,8 +56,6 @@ def transcribe_audio(input_data, method):
 def home_page():
     st.title("Soft Transcribe - Audio Transcription App")
     uploaded_file = st.file_uploader("Upload an audio file", type=["wav", "mp3", "ogg", "flac", "aac", "m4a"])
-    with open(uploaded_file.name, 'wb') as f:
-        f.write(uploaded_file.getvalue())
     transcription_mode = st.selectbox("Select Transcription Method", ["File Upload", "URL", "Google Drive", "YouTube"])
     
     if transcription_mode == "File Upload" and uploaded_file:
