@@ -51,7 +51,7 @@ def transcribe_audio(input_data, method):
     st.text("Listen to the uploaded audio before transcribing:")
     if st.button("Transcribe"):
         st.text("Transcribing... This may take a moment.")
-        transcription = whisper(file_path, chunk_length_s=60)['text']
+        transcription = whisper(file_path, chunk_length_s=10)['text']
         st.success("Transcription Complete:")
         st.write(transcription)
 
