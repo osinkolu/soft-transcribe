@@ -42,7 +42,7 @@ def transcribe_audio(input_data, method):
         file_path = download_audio_from_youtube(input_data)
         st.audio(file_path, format="audio/" + file_path.split(".")[-1], start_time=0)
     elif method == "File Upload":
-        file_path = input_data.name
+        file_path = input_data
         st.audio(file_path, format="audio/" + file_path.split(".")[-1], start_time=0)
     else:
         raise ValueError("Invalid transcription method")
