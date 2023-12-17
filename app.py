@@ -29,7 +29,7 @@ def download_audio_from_youtube(youtube_link, output_folder="."):
     return file_path
 
 def transcribe_audio(input_data, method):
-    whisper = pipeline("automatic-speech-recognition", model="openai/whisper-medium")
+    whisper = pipeline("automatic-speech-recognition", model="openai/whisper-base.en")
     
     if method == "URL":
         file_path = download_file_from_url(input_data)
