@@ -44,14 +44,14 @@ def transcribe_audio(input_data, method):
     elif method == "File Upload":
         file_path = input_data
         st.audio(file_path, start_time=0)
-        file_path = input_data.read()
+        file_path = input_data.read() #pass in the numpy array instead.
     else:
         raise ValueError("Invalid transcription method")
     
     st.text("Listen to the uploaded audio before transcribing:")
     if st.button("Transcribe"):
         st.text("Transcribing... This may take a moment.")
-        transcription = whisper(file_path)['text']
+        transcription = whisper(file_path, chunk_length_s=60)['text']
         st.success("Transcription Complete:")
         st.write(transcription)
 
