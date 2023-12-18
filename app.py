@@ -71,11 +71,21 @@ def transcribe_audio(input_data, method):
             elapsed_time = end_time - start_time
             st.success(f"Transcription complete 🎊, the computation took: {elapsed_time:.4f} seconds")
             st.write(transcription)
+            st.warning("Please note that this transcription may be incomplete.")
         except:
             st.error("So sorry 😔, I couldn't transcribe the audio, something is wrong. Ensure you select the correct Transcription Method.")
 
 def home_page():
     st.title("Soft Transcribe - Audio Transcription App")
+        # Credits Section (Expandable)
+    with st.expander("Credits"):
+        st.write(
+            "This application uses Hugging Face's Whisper ASR model for automatic speech recognition."
+            "\n\n"
+            "Special thanks to Hugging Face for providing state-of-the-art NLP models and transformers."
+            "\n\n"
+            "This Project was built with ❤️ by Professor for Oreoluwa."
+        )
     uploaded_file = st.file_uploader("Upload an audio file", type=["wav", "mp3", "ogg", "flac", "aac", "m4a"])
     transcription_mode = st.selectbox("Select Transcription Method", ["File Upload", "URL", "Google Drive", "YouTube"])
     
