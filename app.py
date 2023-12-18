@@ -72,7 +72,7 @@ def transcribe_audio(input_data, method):
             st.success(f"Transcription complete 🎊, the computation took: {elapsed_time:.4f} seconds")
             st.write(transcription)
         except:
-            st.error("So sorry 😔, I couldn't transcribe the audio, something is wrong.")
+            st.error("So sorry 😔, I couldn't transcribe the audio, something is wrong. Ensure you select the correct Transcription Method")
 
 def home_page():
     st.title("Soft Transcribe - Audio Transcription App")
