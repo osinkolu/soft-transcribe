@@ -76,7 +76,7 @@ def transcribe_audio(input_data, method):
             st.error("So sorry 😔, I couldn't transcribe the audio, something is wrong. Ensure you select the correct Transcription Method.")
 
 def home_page():
-    st.title("Soft Transcribe - Audio Transcription App")
+    st.title("Soft Transcribe")
         # Credits Section (Expandable)
     with st.expander("Credits"):
         st.write(
