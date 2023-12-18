@@ -1,5 +1,7 @@
 # Soft Transcribe - Audio Transcription App
 
+Deploy link: https://soft-transcribe.streamlit.app/
+
 Soft Transcribe is a simple audio transcription app that allows users to transcribe audio files using Hugging Face's Whisper ASR model. The app supports various methods of providing audio data, including file upload, URL, Google Drive link, and YouTube video link.
 
 ## Usage
