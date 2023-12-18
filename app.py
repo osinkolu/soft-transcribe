@@ -64,7 +64,7 @@ def transcribe_audio(input_data, method):
         start_time = time.time()
         st.text("Transcribing... This may take a moment.")
         try:
-            transcription = whisper(file_path,  max_new_tokens=100, chunk_length_s=30)['text']
+            transcription = whisper(file_path, chunk_length_s=30)['text']
             # Record the end time
             end_time = time.time()
             # Calculate and print the elapsed time in seconds
@@ -72,7 +72,7 @@ def transcribe_audio(input_data, method):
             st.success(f"Transcription complete 🎊, the computation took: {elapsed_time:.4f} seconds")
             st.write(transcription)
         except:
-            st.error("So sorry 😔, I couldn't transcribe the audio, something is wrong. Ensure you select the correct Transcription Method")
+            st.error("So sorry 😔, I couldn't transcribe the audio, something is wrong. Ensure you select the correct Transcription Method.")
 
 def home_page():
     st.title("Soft Transcribe - Audio Transcription App")
