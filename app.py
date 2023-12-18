@@ -32,15 +32,25 @@ def transcribe_audio(input_data, method):
     whisper = pipeline("automatic-speech-recognition", model="openai/whisper-base.en")
     
     if method == "URL":
-        file_path = download_file_from_url(input_data)
+        try:
+            file_path = download_file_from_url(input_data)
+            st.audio(file_path, format="audio/" + file_path.split(".")[-1], start_time=0)
+        except Exception:
+            st.warning("Something is wrong with your download URL")
     elif method == "Google Drive":
-        file_extension = st.selectbox("Select File Extension", ["mp3", "wav", "ogg", "flac", "aac", "m4a"])
-        file_path = download_file_from_google_drive(input_data, file_extension)
+        try:
+            file_extension = st.selectbox("Select File Extension", ["mp3", "wav", "ogg", "flac", "aac", "m4a"])
+            file_path = download_file_from_google_drive(input_data, file_extension)
+        except Exception:
+            st.warning("There was an issue, kindly confirm your link allows access for all, and copy it as it is from drive")
         st.audio(file_path, format="audio/" + file_extension, start_time=0)
 
     elif method == "YouTube":
-        file_path = download_audio_from_youtube(input_data)
-        st.audio(file_path, format="audio/" + file_path.split(".")[-1], start_time=0)
+        try:
+            file_path = download_audio_from_youtube(input_data)
+        except Exception:
+            st.warning("I couldn't pull out your audio from the Youtube video. There's probably some restrictions from Youtube")
+            st.audio(file_path, format="audio/" + file_path.split(".")[-1], start_time=0)
     elif method == "File Upload":
         file_path = input_data
         st.audio(file_path, start_time=0)
@@ -53,13 +63,16 @@ def transcribe_audio(input_data, method):
         # Record the start time
         start_time = time.time()
         st.text("Transcribing... This may take a moment.")
-        transcription = whisper(file_path,  max_new_tokens=100, chunk_length_s=30)['text']
-        # Record the end time
-        end_time = time.time()
-        # Calculate and print the elapsed time in seconds
-        elapsed_time = end_time - start_time
-        st.success(f"Transcription complete 🎊, the computation took: {elapsed_time:.4f} seconds")
-        st.write(transcription)
+        try:
+            transcription = whisper(file_path,  max_new_tokens=100, chunk_length_s=30)['text']
+            # Record the end time
+            end_time = time.time()
+            # Calculate and print the elapsed time in seconds
+            elapsed_time = end_time - start_time
+            st.success(f"Transcription complete 🎊, the computation took: {elapsed_time:.4f} seconds")
+            st.write(transcription)
+        except:
+            st.error("So sorry 😔, I couldn't transcribe the audio, something is wrong.")
 
 def home_page():
     st.title("Soft Transcribe - Audio Transcription App")
