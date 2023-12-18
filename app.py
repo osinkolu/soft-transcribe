@@ -86,6 +86,7 @@ def home_page():
             "\n\n"
             "This Project was built with ❤️ by Professor for Oreoluwa."
         )
+        st.warning("Please note that this app runs on a CPU, transcribing will be very slow for long audio files")
     uploaded_file = st.file_uploader("Upload an audio file", type=["wav", "mp3", "ogg", "flac", "aac", "m4a"])
     transcription_mode = st.selectbox("Select Transcription Method", ["File Upload", "URL", "Google Drive", "YouTube"])
     
