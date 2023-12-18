@@ -53,7 +53,7 @@ def transcribe_audio(input_data, method):
         # Record the start time
         start_time = time.time()
         st.text("Transcribing... This may take a moment.")
-        transcription = whisper(file_path,  max_new_tokens=300, chunk_length_s=30)['text']
+        transcription = whisper(file_path,  max_new_tokens=100, chunk_length_s=30)['text']
         # Record the end time
         end_time = time.time()
         # Calculate and print the elapsed time in seconds
